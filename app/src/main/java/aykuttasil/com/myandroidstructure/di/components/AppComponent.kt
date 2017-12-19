@@ -1,10 +1,10 @@
 package aykuttasil.com.myandroidstructure.di.components
 
 import android.app.Application
-import android.support.v7.app.AppCompatActivity
 import aykuttasil.com.myandroidstructure.App
 import aykuttasil.com.myandroidstructure.di.ActivityBuilder
 import aykuttasil.com.myandroidstructure.di.modules.AppModule
+import aykuttasil.com.myandroidstructure.di.modules.DatabaseModule
 import aykuttasil.com.myandroidstructure.di.modules.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
@@ -17,7 +17,12 @@ import javax.inject.Singleton
  * Created by aykutasil on 8.12.2017.
  */
 @Singleton
-@Component(modules = arrayOf(AndroidSupportInjectionModule::class, ActivityBuilder::class, AppModule::class, NetworkModule::class))
+@Component(modules = arrayOf(
+        AndroidSupportInjectionModule::class,
+        ActivityBuilder::class,
+        AppModule::class,
+        NetworkModule::class,
+        DatabaseModule::class))
 interface AppComponent : AndroidInjector<App> {
 
     @Component.Builder

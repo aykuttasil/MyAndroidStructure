@@ -19,7 +19,7 @@ import javax.inject.Singleton
  * Created by aykutasil on 9.12.2017.
  */
 
-@Module
+@Module(includes = arrayOf(ApiModule::class))
 class NetworkModule {
 
     protected fun getBaseUrl() = "http://api.xyz.com"

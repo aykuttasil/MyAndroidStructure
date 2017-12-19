@@ -1,4 +1,4 @@
-package aykuttasil.com.myandroidstructure.data.model
+package aykuttasil.com.myandroidstructure.data.remote.model
 
 /**
  * Created by aykutasil on 8.12.2017.

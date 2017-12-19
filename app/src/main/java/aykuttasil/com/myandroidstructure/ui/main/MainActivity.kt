@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.widget.Toast
 import aykuttasil.com.myandroidstructure.R
 import aykuttasil.com.myandroidstructure.data.remote.ApiManager
 import aykuttasil.com.myandroidstructure.ui.base.BaseActivity
@@ -15,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jetbrains.anko.sdk25.coroutines.onClick
+import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 
@@ -24,10 +24,10 @@ class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainCo
     lateinit var sharedPreference: SharedPreferences
 
     @Inject
-    lateinit var apiManager: ApiManager
+    lateinit var okHttp: OkHttpClient
 
     @Inject
-    lateinit var okHttp: OkHttpClient
+    lateinit var apiManager: ApiManager
 
     override fun createPresenter(): MainPresenter {
         return MainPresenter()
@@ -55,6 +55,13 @@ class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainCo
 
                     })
 
+            apiManager.getUser("user id")
+                    .subscribe({
+                        println(it)
+                    }, {
+                        it.printStackTrace()
+                    })
+
             presenter.doLogin()
         })
 
@@ -72,6 +79,5 @@ class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainCo
 
     override fun showProgress() {
         Snackbar.make(btnShowProgress, sharedPreference.getString("Ad", "default value"), Snackbar.LENGTH_SHORT).show()
-        Toast.makeText(this, apiManager.getAd(), Toast.LENGTH_LONG).show()
     }
 }

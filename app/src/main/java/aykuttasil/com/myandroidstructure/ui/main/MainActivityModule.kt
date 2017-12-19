@@ -1,7 +1,6 @@
 package aykuttasil.com.myandroidstructure.ui.main
 
 import android.content.Context
-import aykuttasil.com.myandroidstructure.data.remote.ApiManager
 import aykuttasil.com.myandroidstructure.di.ActivityContext
 import dagger.Module
 import dagger.Provides
@@ -11,11 +10,6 @@ import dagger.Provides
  */
 @Module
 class MainActivityModule {
-
-    @Provides
-    fun providerApiManager(): ApiManager {
-        return ApiManager("Benim Adım Aykut")
-    }
 
     @ActivityContext
     @Provides
