@@ -1,9 +1,11 @@
 package aykuttasil.com.myandroidstructure.ui.detail
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import aykuttasil.com.myandroidstructure.R
 import aykuttasil.com.myandroidstructure.ui.base.BaseActivity
+import aykuttasil.com.myandroidstructure.ui.tabs.TabsActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.sdk25.coroutines.onClick
@@ -31,6 +33,12 @@ class DetailActivity : BaseActivity<DetailContract.DetailView, DetailPresenter>(
                 toast("So you're living in ${countries[i]}, right?")
             })
         }
+
+        btnGoTabs1.onClick {
+            val intent = Intent(this@DetailActivity, TabsActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun createPresenter(): DetailPresenter {

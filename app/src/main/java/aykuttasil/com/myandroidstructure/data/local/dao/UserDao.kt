@@ -2,7 +2,6 @@ package aykuttasil.com.myandroidstructure.data.local.dao
 
 import android.arch.persistence.room.*
 import aykuttasil.com.myandroidstructure.data.local.entity.UserEntitiy
-import aykuttasil.com.myandroidstructure.data.remote.model.User
 import io.reactivex.Flowable
 
 /**
@@ -26,7 +25,7 @@ abstract class UserDao {
     @Query("SELECT * FROM user")
     abstract fun getItems(): Flowable<List<UserEntitiy>>
 
-    @Query("SELECT * FROM user WHERE Id=:id")
+    @Query("SELECT * FROM user WHERE user_id=:id")
     abstract fun getItem(id: Long): UserEntitiy
 
     @Insert

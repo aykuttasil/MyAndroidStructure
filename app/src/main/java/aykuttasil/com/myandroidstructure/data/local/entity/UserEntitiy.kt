@@ -9,9 +9,9 @@ import android.arch.persistence.room.PrimaryKey
  */
 @Entity(tableName = "user")
 data class UserEntitiy(
-        @PrimaryKey @ColumnInfo(name = "id") val Id: Long,
-        @ColumnInfo(name = "user_name") val userName: String,
-        @ColumnInfo(name = "user_age") val userAge: Int,
-        @ColumnInfo(name = "user_city") val userCity: String,
-        @ColumnInfo(name = "user_email") val userEmail: String
+        @PrimaryKey @ColumnInfo(name = "user_id") val UserId: Long,
+        @ColumnInfo(name = "user_name") val UserName: String,
+        @ColumnInfo(name = "user_age") val UserAge: Int,
+        @ColumnInfo(name = "user_city") val UserCity: String,
+        @ColumnInfo(name = "user_email") val UserEmail: String
 )

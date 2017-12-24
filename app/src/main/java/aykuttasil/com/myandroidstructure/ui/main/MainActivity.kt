@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.util.Log
 import aykuttasil.com.myandroidstructure.R
 import aykuttasil.com.myandroidstructure.data.local.entity.UserEntitiy
 import aykuttasil.com.myandroidstructure.data.remote.ApiManager
@@ -67,10 +68,12 @@ class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainCo
                     })
 
             presenter.doLogin()
+            Log.i("aaa: ", "" + mainPresenter.hashCode())
         })
 
         btnGoDetail.onClick {
             val intent = Intent(this@MainActivity, DetailActivity::class.java)
+            //intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
 
@@ -96,5 +99,15 @@ class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainCo
 
     override fun showMessage(msg: String) {
         longToast(msg)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("aaa", "MainActivity -> onStop()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("aaa", "MainActivity -> onDestroy()")
     }
 }

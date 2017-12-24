@@ -3,6 +3,7 @@ package aykuttasil.com.myandroidstructure.ui.main
 import android.content.Context
 import aykuttasil.com.myandroidstructure.data.DataManager
 import aykuttasil.com.myandroidstructure.di.ActivityContext
+import aykuttasil.com.myandroidstructure.di.PerActivity
 import dagger.Module
 import dagger.Provides
 
@@ -19,7 +20,7 @@ class MainActivityModule {
     }
 
 
-    @ActivityContext
+    @PerActivity
     @Provides
     fun provideMainPresenter(dataManager: DataManager): MainPresenter {
         return MainPresenter(dataManager)

@@ -9,7 +9,7 @@ import aykuttasil.com.myandroidstructure.data.local.entity.UserEntitiy
 
 @Database(
         entities = arrayOf(GenreEntity::class, UserEntitiy::class),
-        version = 5)
+        version = 6)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getGenreDao(): GenreDao

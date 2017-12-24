@@ -1,5 +1,6 @@
 package aykuttasil.com.myandroidstructure.data
 
+import android.util.Log
 import aykuttasil.com.myandroidstructure.data.local.entity.UserEntitiy
 import aykuttasil.com.myandroidstructure.data.remote.ApiManager
 import io.reactivex.Single
@@ -15,7 +16,9 @@ class DataManager @Inject constructor(private val apiManager: ApiManager, privat
     fun addUserToLocal(user: UserEntitiy): Single<Long>? {
         return Single.create {
             try {
-                it.onSuccess(appDatabase.getUserDao().insertItem(user))
+                val userId = appDatabase.getUserDao().insertItem(user)
+                Log.i("aaa", "User Id: " + userId)
+                it.onSuccess(userId)
             } catch (e: Exception) {
                 it.onError(e)
             }
