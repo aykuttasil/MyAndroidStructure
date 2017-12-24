@@ -9,11 +9,11 @@ import aykuttasil.com.myandroidstructure.data.local.entity.UserEntitiy
 
 @Database(
         entities = arrayOf(GenreEntity::class, UserEntitiy::class),
-        version = 3)
+        version = 5)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getGenreDao(): GenreDao
 
-    abstract fun geUserDao(): UserDao
+    abstract fun getUserDao(): UserDao
 
 }

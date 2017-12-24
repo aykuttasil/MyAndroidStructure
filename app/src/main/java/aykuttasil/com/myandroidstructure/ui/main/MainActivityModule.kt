@@ -18,10 +18,12 @@ class MainActivityModule {
         return context
     }
 
+
     @ActivityContext
     @Provides
     fun provideMainPresenter(dataManager: DataManager): MainPresenter {
         return MainPresenter(dataManager)
     }
+
 
 }

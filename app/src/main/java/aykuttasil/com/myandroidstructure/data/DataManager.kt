@@ -15,7 +15,7 @@ class DataManager @Inject constructor(private val apiManager: ApiManager, privat
     fun addUserToLocal(user: UserEntitiy): Single<Long>? {
         return Single.create {
             try {
-                it.onSuccess(appDatabase.geUserDao().insertItem(user))
+                it.onSuccess(appDatabase.getUserDao().insertItem(user))
             } catch (e: Exception) {
                 it.onError(e)
             }

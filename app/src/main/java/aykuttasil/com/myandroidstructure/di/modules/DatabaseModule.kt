@@ -20,10 +20,14 @@ class DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(context, AppDatabase::class.java, DB_NAME).build()
+    fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(context, AppDatabase::class.java, DB_NAME).fallbackToDestructiveMigration().build()
 
     @Provides
     @Singleton
     fun provideGenreDao(db: AppDatabase) = db.getGenreDao()
+
+    @Provides
+    @Singleton
+    fun provideUserDao(db: AppDatabase) = db.getUserDao()
 
 }

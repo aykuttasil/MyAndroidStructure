@@ -4,16 +4,19 @@ import aykuttasil.com.myandroidstructure.data.DataManager
 import aykuttasil.com.myandroidstructure.data.local.entity.UserEntitiy
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
  * Created by aykutasil on 7.12.2017.
  */
-class MainPresenter @Inject constructor(var dataManager: DataManager) : MvpBasePresenter<MainContact.MainView>(), MainContact.MainPresenter {
+class MainPresenter @Inject constructor(private var dataManager: DataManager) : MvpBasePresenter<MainContact.MainView>(), MainContact.MainPresenter {
+
+    private val compositeDisposable = CompositeDisposable()
 
     override fun addUser(user: UserEntitiy) {
-        dataManager.addUserToLocal(user)!!
+        compositeDisposable.add(dataManager.addUserToLocal(user)!!
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ rsp ->
@@ -24,7 +27,7 @@ class MainPresenter @Inject constructor(var dataManager: DataManager) : MvpBaseP
                     }
                 }, {
                     it.printStackTrace()
-                })
+                }))
     }
 
     override fun doLogin() {
@@ -32,6 +35,11 @@ class MainPresenter @Inject constructor(var dataManager: DataManager) : MvpBaseP
             view.showProgress()
         }
 
+    }
+
+    override fun detachView() {
+        super.detachView()
+        compositeDisposable.dispose()
     }
 
 }
