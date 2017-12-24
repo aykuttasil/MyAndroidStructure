@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import aykuttasil.com.myandroidstructure.R
+import aykuttasil.com.myandroidstructure.data.local.entity.UserEntitiy
 import aykuttasil.com.myandroidstructure.data.remote.ApiManager
 import aykuttasil.com.myandroidstructure.ui.base.BaseActivity
 import aykuttasil.com.myandroidstructure.ui.detail.DetailActivity
@@ -13,9 +14,10 @@ import aykuttasil.com.myandroidstructure.ui.tabs.TabsActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.sdk25.coroutines.onClick
-import timber.log.Timber
 import java.io.IOException
+import java.util.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainContact.MainView {
@@ -29,8 +31,11 @@ class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainCo
     @Inject
     lateinit var apiManager: ApiManager
 
+    @Inject
+    lateinit var mainPresenter: MainPresenter
+
     override fun createPresenter(): MainPresenter {
-        return MainPresenter()
+        return mainPresenter
     }
 
     @SuppressLint("ApplySharedPref")
@@ -52,7 +57,6 @@ class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainCo
                         override fun onResponse(call: okhttp3.Call?, response: okhttp3.Response?) {
                             println(response?.body().toString())
                         }
-
                     })
 
             apiManager.getUser("user id")
@@ -74,10 +78,23 @@ class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainCo
             val intent = Intent(this@MainActivity, TabsActivity::class.java)
             startActivity(intent)
         }
+
+        btnSaveUser.onClick {
+            try {
+                presenter.addUser(UserEntitiy(Random().nextLong(), "Aykut", 26, "İstanbul", "aykuttasil@gmail.com"));
+                //appDatabase.geUserDao().insertItem(UserEntitiy(Random().nextLong(), "Aykut", 26, "İstanbul", "aykuttasil@gmail.com"))
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
 
     override fun showProgress() {
         Snackbar.make(btnShowProgress, sharedPreference.getString("Ad", "default value"), Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun showMessage(msg: String) {
+        longToast(msg)
     }
 }

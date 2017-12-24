@@ -4,8 +4,10 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import aykuttasil.com.myandroidstructure.data.AppDatabase
 import aykuttasil.com.myandroidstructure.data.DataManager
 import aykuttasil.com.myandroidstructure.data.remote.ApiManager
+import aykuttasil.com.myandroidstructure.data.remote.ApiService
 import aykuttasil.com.myandroidstructure.di.ApplicationContext
 import dagger.Module
 import dagger.Provides
@@ -14,6 +16,7 @@ import javax.inject.Singleton
 /**
  * Created by aykutasil on 8.12.2017.
  */
+
 @Module
 class AppModule {
 
@@ -32,7 +35,13 @@ class AppModule {
 
     @Singleton
     @Provides
-    internal fun provideDataManager(apiManager: ApiManager): DataManager {
-        return DataManager(apiManager)
+    internal fun provideApiManager(apiService: ApiService): ApiManager {
+        return ApiManager(apiService)
+    }
+
+    @Singleton
+    @Provides
+    internal fun provideDataManager(apiManager: ApiManager, appDatabase: AppDatabase): DataManager {
+        return DataManager(apiManager, appDatabase)
     }
 }

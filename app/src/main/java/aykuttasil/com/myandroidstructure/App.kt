@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.multidex.MultiDex
 import aykuttasil.com.myandroidstructure.di.components.AppComponent
 import aykuttasil.com.myandroidstructure.di.components.DaggerAppComponent
+import com.facebook.stetho.Stetho
 import dagger.android.AndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.support.DaggerApplication
@@ -26,7 +27,14 @@ class App : DaggerApplication(), HasActivityInjector {
         appComponent = DaggerAppComponent.builder()
                 .application(this)
                 .build()
-        return appComponent;
+        return appComponent
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        if (BuildConfig.DEBUG) {
+            Stetho.initializeWithDefaults(this)
+        }
     }
 
     /*

@@ -48,7 +48,6 @@ class NetworkModule {
             httpClientBuilder.addNetworkInterceptor(stethoInterceptor)
         }
         return httpClientBuilder.build()
-
     }
 
     @Provides

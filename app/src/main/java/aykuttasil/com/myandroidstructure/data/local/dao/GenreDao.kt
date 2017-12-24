@@ -22,4 +22,7 @@ abstract class GenreDao {
     @Query("SELECT * FROM genres")
     abstract fun getGenres(): Flowable<List<GenreEntity>>
 
+    @Query("SELECT * FROM genres WHERE genre_id=:id")
+    abstract fun getGenre(id: Long): GenreEntity
+
 }

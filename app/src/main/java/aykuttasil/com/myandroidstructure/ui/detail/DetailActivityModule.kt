@@ -13,7 +13,7 @@ class DetailActivityModule {
 
     @ActivityContext
     @Provides
-    fun providerContext(context: Context): Context {
+    fun providerContext(context: DetailActivity): Context {
         return context
     }
 
