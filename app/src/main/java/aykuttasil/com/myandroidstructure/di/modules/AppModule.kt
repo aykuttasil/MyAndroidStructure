@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import aykuttasil.com.myandroidstructure.App
 import aykuttasil.com.myandroidstructure.data.AppDatabase
 import aykuttasil.com.myandroidstructure.data.DataManager
 import aykuttasil.com.myandroidstructure.data.remote.ApiManager
@@ -17,7 +18,7 @@ import javax.inject.Singleton
  * Created by aykutasil on 8.12.2017.
  */
 
-@Module
+@Module(includes = arrayOf(ViewModelModule::class))
 class AppModule {
 
     @Singleton
@@ -25,6 +26,12 @@ class AppModule {
     @ApplicationContext
     internal fun provideContext(application: Application): Context {
         return application.applicationContext
+    }
+
+    @Singleton
+    @Provides
+    internal fun provideApp(application: Application): App {
+        return application.applicationContext as App
     }
 
     @Singleton

@@ -2,12 +2,14 @@ package aykuttasil.com.myandroidstructure.util
 
 
 import android.app.Activity
+import android.app.Application
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
+import aykuttasil.com.myandroidstructure.BuildConfig
 
 
 const val ADD_EDIT_RESULT_OK = Activity.RESULT_FIRST_USER + 1
@@ -50,4 +52,17 @@ private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Un
     beginTransaction().apply {
         action()
     }.commit()
+}
+
+
+inline fun AppCompatActivity.debug(block: () -> Unit) {
+    if (BuildConfig.DEBUG) {
+        block()
+    }
+}
+
+inline fun Application.debug(block: () -> Unit) {
+    if (BuildConfig.DEBUG) {
+        block()
+    }
 }

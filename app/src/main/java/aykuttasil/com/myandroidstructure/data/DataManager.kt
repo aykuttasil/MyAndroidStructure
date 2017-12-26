@@ -1,8 +1,10 @@
 package aykuttasil.com.myandroidstructure.data
 
+import android.arch.lifecycle.LiveData
 import android.util.Log
 import aykuttasil.com.myandroidstructure.data.local.entity.UserEntitiy
 import aykuttasil.com.myandroidstructure.data.remote.ApiManager
+import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,6 +25,14 @@ class DataManager @Inject constructor(private val apiManager: ApiManager, privat
                 it.onError(e)
             }
         }
+    }
+
+    fun getUsersToLocal(): Flowable<List<UserEntitiy>> {
+        return appDatabase.getUserDao().getItems()
+    }
+
+    fun getUsersToLocalLive(): LiveData<List<UserEntitiy>> {
+        return appDatabase.getUserDao().getItemsLiveData()
     }
 
 }

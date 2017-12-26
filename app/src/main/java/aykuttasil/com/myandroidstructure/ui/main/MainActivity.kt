@@ -12,6 +12,7 @@ import aykuttasil.com.myandroidstructure.data.remote.ApiManager
 import aykuttasil.com.myandroidstructure.ui.base.BaseActivity
 import aykuttasil.com.myandroidstructure.ui.detail.DetailActivity
 import aykuttasil.com.myandroidstructure.ui.tabs.TabsActivity
+import aykuttasil.com.myandroidstructure.util.showSnackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -21,7 +22,17 @@ import java.io.IOException
 import java.util.*
 import javax.inject.Inject
 
+
 class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainContact.MainView {
+
+    /*
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
+    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {
+        return dispatchingAndroidInjector
+    }
+    */
 
     @Inject
     lateinit var sharedPreference: SharedPreferences
@@ -92,13 +103,21 @@ class MainActivity : BaseActivity<MainContact.MainView, MainPresenter>(), MainCo
         }
     }
 
-
-    override fun showProgress() {
-        Snackbar.make(btnShowProgress, sharedPreference.getString("Ad", "default value"), Snackbar.LENGTH_SHORT).show()
+    override fun showMessage(msg: String?) {
+        longToast(msg ?: "Msg")
     }
 
-    override fun showMessage(msg: String) {
-        longToast(msg)
+    override fun showErrorMessage(msg: String?) {
+
+    }
+
+    override fun showToast(msg: String?) {
+
+    }
+
+    override fun showSnackBar(msg: String?) {
+        btnShowProgress.showSnackbar(msg, Snackbar.LENGTH_LONG)
+        //Snackbar.make(btnShowProgress, sharedPreference.getString("Ad", "default value"), Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onStop() {

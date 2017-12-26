@@ -1,19 +1,23 @@
 package aykuttasil.com.myandroidstructure
 
+import android.app.Activity
+import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
-import aykuttasil.com.myandroidstructure.di.components.AppComponent
-import aykuttasil.com.myandroidstructure.di.components.DaggerAppComponent
+import aykuttasil.com.myandroidstructure.di.AppInjector
+import aykuttasil.com.myandroidstructure.util.debug
 import com.facebook.stetho.Stetho
-import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import dagger.android.support.DaggerApplication
+import javax.inject.Inject
 
 
 /**
  * Created by aykutasil on 7.12.2017.
  */
-class App : DaggerApplication(), HasActivityInjector {
+
+/*
+class App : DaggerApplication() {
 
     lateinit var appComponent: AppComponent
 
@@ -32,20 +36,41 @@ class App : DaggerApplication(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        if (BuildConfig.DEBUG) {
+        debug {
             Stetho.initializeWithDefaults(this)
         }
     }
 
-    /*
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
+
+}
+*/
+
+class App : Application(), HasActivityInjector {
+
     @Inject
     lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+
+    companion object {
+        fun getInstance(context: Context): App {
+            return context.applicationContext as App
+        }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        AppInjector.init(this)
+        debug {
+            Stetho.initializeWithDefaults(this)
+        }
+    }
 
     override fun activityInjector(): DispatchingAndroidInjector<Activity> {
         return activityDispatchingAndroidInjector
     }
-    */
-
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)

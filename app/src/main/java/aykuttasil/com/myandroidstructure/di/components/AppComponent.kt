@@ -17,12 +17,12 @@ import javax.inject.Singleton
  * Created by aykutasil on 8.12.2017.
  */
 @Singleton
-@Component(modules = arrayOf(
-        AndroidSupportInjectionModule::class,
-        ActivityBuilder::class,
-        AppModule::class,
-        NetworkModule::class,
-        DatabaseModule::class))
+@Component(modules = [
+    (AndroidSupportInjectionModule::class),
+    (ActivityBuilder::class),
+    (AppModule::class),
+    (NetworkModule::class),
+    (DatabaseModule::class)])
 interface AppComponent : AndroidInjector<App> {
 
     @Component.Builder
@@ -43,5 +43,11 @@ interface AppComponent : AndroidInjector<App> {
         fun build(): AppComponent
 
     }
+
+    /*
+    // ----> or
+    @Component.Builder
+    internal abstract inner class Builder : AndroidInjector.Builder<App>()
+    */
 
 }

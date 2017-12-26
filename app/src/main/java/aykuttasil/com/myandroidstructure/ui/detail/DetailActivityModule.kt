@@ -1,7 +1,9 @@
 package aykuttasil.com.myandroidstructure.ui.detail
 
 import android.content.Context
+import aykuttasil.com.myandroidstructure.data.DataManager
 import aykuttasil.com.myandroidstructure.di.ActivityContext
+import aykuttasil.com.myandroidstructure.di.PerActivity
 import dagger.Module
 import dagger.Provides
 
@@ -17,5 +19,9 @@ class DetailActivityModule {
         return context
     }
 
-
+    @PerActivity
+    @Provides
+    fun provideDetailPresenter(dataManager: DataManager): DetailPresenter {
+        return DetailPresenter(dataManager)
+    }
 }

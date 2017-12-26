@@ -35,14 +35,8 @@ class MainPresenter @Inject constructor(private var dataManager: DataManager) : 
 
     override fun doLogin() {
         ifViewAttached { view ->
-            view.showProgress()
+            view.showSnackBar("qwerty")
         }
-    }
-
-    override fun destroy() {
-        super.destroy()
-        Log.i("aaa: ", "MainPresenter -> destroy()")
-        compositeDisposable.dispose()
     }
 
     override fun detachView() {

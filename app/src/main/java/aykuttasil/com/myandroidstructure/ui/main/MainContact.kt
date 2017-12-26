@@ -1,7 +1,7 @@
 package aykuttasil.com.myandroidstructure.ui.main
 
 import aykuttasil.com.myandroidstructure.data.local.entity.UserEntitiy
-import com.hannesdorfmann.mosby3.mvp.MvpView
+import aykuttasil.com.myandroidstructure.ui.base.BaseMvpView
 
 /**
  * Created by aykutasil on 7.12.2017.
@@ -14,10 +14,7 @@ interface MainContact {
         fun addUser(user: UserEntitiy)
     }
 
-    interface MainView : MvpView {
-        fun showProgress()
-
-        fun showMessage(msg: String)
+    interface MainView : BaseMvpView {
 
     }
 
