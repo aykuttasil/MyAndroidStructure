@@ -1,5 +1,6 @@
 package aykuttasil.com.myandroidstructure.util.extension
 
+
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.LiveDataReactiveStreams

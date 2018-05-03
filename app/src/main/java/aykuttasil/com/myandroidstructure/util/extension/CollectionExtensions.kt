@@ -1,5 +1,6 @@
 package aykuttasil.com.myandroidstructure.util.extension
 
+
 fun <T> ArrayList<T>.addIfAbsent(data: T) {
     if (!this.contains(data)) {
         this.add(data)

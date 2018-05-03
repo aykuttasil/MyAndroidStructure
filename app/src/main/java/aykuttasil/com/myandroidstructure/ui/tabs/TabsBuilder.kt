@@ -13,7 +13,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class TabsBuilder {
 
-
     @ContributesAndroidInjector(modules = arrayOf(Tab1Module::class))
     internal abstract fun bindTab1(): Tab1
 

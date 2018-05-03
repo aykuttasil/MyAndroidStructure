@@ -1,10 +1,12 @@
-package aykuttasil.com.myandroidstructure.util
+package aykuttasil.com.myandroidstructure.util.extension
 
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.Observer
 import android.support.design.widget.Snackbar
 import android.view.View
+import aykuttasil.com.myandroidstructure.util.SingleLiveEvent
+
 
 /**
  * Transforms static java function Snackbar.make() to an extension function on View.

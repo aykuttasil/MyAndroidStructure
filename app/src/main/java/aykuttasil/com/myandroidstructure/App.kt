@@ -5,7 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
 import aykuttasil.com.myandroidstructure.di.AppInjector
-import aykuttasil.com.myandroidstructure.util.debug
+import aykuttasil.com.myandroidstructure.util.extension.debug
 import com.facebook.stetho.Stetho
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector

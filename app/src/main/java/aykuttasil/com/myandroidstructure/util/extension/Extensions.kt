@@ -1,4 +1,5 @@
-package aykuttasil.com.myandroidstructure.util
+package aykuttasil.com.myandroidstructure.util.extension
+
 
 import android.app.Activity
 import android.content.Context

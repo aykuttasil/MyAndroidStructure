@@ -26,15 +26,6 @@ import javax.inject.Inject
  */
 class DetailActivity : BaseActivity<DetailContract.DetailView, DetailPresenter>(), DetailContract.DetailView {
 
-    /*
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
-    override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> {
-        return dispatchingAndroidInjector
-    }
-    */
-
     @Inject
     lateinit var detailPresenter: DetailPresenter
 
